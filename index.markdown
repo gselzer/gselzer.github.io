@@ -53,4 +53,4 @@ When I'm not online, you can find me out on a [disc golf](https://www.pdga.com/n
 
 Selzer, G.J., Rueden, C.T., Hiner, M.C. et al. napari-imagej: ImageJ ecosystem access from napari. Nat Methods (2023). <https://doi.org/10.1038/s41592-023-01990-0>
 
-Gahm NA, Rueden CT, Evans III EL, Selzer G, Hiner MC, Chacko JV, Gao D, Sherer NM, Eliceiri KW. "New Extensibility and Scripting Tools in the ImageJ Ecosystem." Current protocols. 2021 Aug;1(8):e204. <https://doi:11.1002/cpz1.204>
+Gahm NA, Rueden CT, Evans III EL, Selzer G, Hiner MC, Chacko JV, Gao D, Sherer NM, Eliceiri KW. "New Extensibility and Scripting Tools in the ImageJ Ecosystem." Current protocols. 2021 Aug;1(8):e204. <https://doi.org/10.1002/cpz1.204>
