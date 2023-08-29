@@ -42,7 +42,58 @@ When I'm not online, you can find me out on a [disc golf](https://www.pdga.com/n
     <a href="https://github.com">
         <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg">
     </a>
+    <a href="https://code.visualstudio.com/">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg">
+    </a>
+    <a href="https://www.vim.org/">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Vimlogo.svg">
+    </a>
 </div>
+
+## Technologies I've Used (and want to know more about!)
+
+<div class="tech">
+    <a href="https://groovy-lang.org/">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/3/36/Groovy-logo.svg">
+    </a>
+    <a href="https://www.haskell.org/">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Haskell-Logo.svg">
+    </a>
+    <a href="https://www.mathworks.com/products/matlab.html">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png">
+    </a>
+    <a href="https://www.w3.org/TR/2011/WD-html5-20110405/spec.html">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg">
+    </a>
+    <a href="https://www.w3.org/TR/CSS/">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg">
+    </a>
+    <a href="https://www.rust-lang.org/">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Rust_programming_language_black_logo.svg">
+    </a>
+    <a href="https://developer.nvidia.com/cuda-toolkit">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/en/b/b9/Nvidia_CUDA_Logo.jpg">
+    </a>
+    <a href="https://www.tensorflow.org/">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg">
+    </a>
+    <a href="https://nodejs.org/en">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg">
+    </a>
+    <a href="https://jupyter.org/">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg">
+    </a>
+    <a href="https://isocpp.org/">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg">
+    </a>
+    <a href="https://d3js.org/">
+        <img class="icon" src="https://github.com/d3/d3-logo/blob/master/d3.svg">
+    </a>
+    <a href="https://github.com/AR-js-org/AR.js">
+        <img class="icon" src="https://github.com/AR-js-org/AR.js/blob/master/logo.png">
+    </a>
+</div>
+
           
 
 ## Projects I'm Proud of
