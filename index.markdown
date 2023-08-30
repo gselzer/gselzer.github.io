@@ -48,6 +48,12 @@ When I'm not online, you can find me out on a [disc golf](https://www.pdga.com/n
     <a href="https://www.vim.org/">
         <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Vimlogo.svg">
     </a>
+    <a href="https://docs.conda.io/en/latest/">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Conda_logo.svg">
+    </a>
+    <a href="https://www.qt.io/product/framework">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Qt_logo_2016.svg">
+    </a>
 </div>
 
 ## Technologies I've Used (and want to know more about!)
@@ -87,18 +93,26 @@ When I'm not online, you can find me out on a [disc golf](https://www.pdga.com/n
         <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg">
     </a>
     <a href="https://d3js.org/">
-        <img class="icon" src="https://github.com/d3/d3-logo/blob/master/d3.svg">
+        <img class="icon" src="https://raw.githubusercontent.com/d3/d3-logo/6d9c471aa852033501d00ca63fe73d9f8be82d1d/d3.svg">
     </a>
     <a href="https://github.com/AR-js-org/AR.js">
-        <img class="icon" src="https://github.com/AR-js-org/AR.js/blob/master/logo.png">
+        <img class="icon" src="https://raw.githubusercontent.com/AR-js-org/AR.js/master/logo.png">
+    </a>
+    <a href="https://www.arduino.cc/">
+        <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/8/87/Arduino_Logo.svg">
     </a>
 </div>
-
-          
 
 ## Projects I'm Proud of
 * [SciJava3](https://github.com/scijava/scijava), the next generation of the [SciJava](https://imagej.net/libs/scijava) ecosystem
 * [napari-imagej](https://napari.imagej.net), a [napari](https://napari.org/) plugin designed to unify the Python scientific stack with the [ImageJ ecosystem](https://imagej.net).
+
+## Educational Background
+
+| - | - | - |
+| May 2024  | M.S. | Computer Sciences, University of Wisconsin-Madison |
+| December 2021  | B.S. | Computer Sciences, University of Wisconsin-Madison <br> Electrical Engineering, University of Wisconsin-Madison|
+| December 2021  | Cert. | German, University of Wisconsin-Madison |
 
 ## My Publications
 
