@@ -4,7 +4,7 @@ import { glob, file } from "astro/loaders";
 import { z, defineCollection } from "astro:content";
 // Define a `loader` and `schema` for each collection
 const blog = defineCollection({
-    loader: glob({ pattern: '**/[^_]*.md', base: "./src/content/blog" }),
+    loader: glob({ pattern: '**/[^_]*.md', base: "./content/blog" }),
     schema: z.object({
       title: z.string(),
       pubDate: z.date(),
@@ -22,7 +22,7 @@ const blog = defineCollection({
     })
 });
 const external = defineCollection({
-    loader: file('src/content/external.yaml'),
+    loader: file('./content/external.yaml'),
     schema: z.object({
       title: z.string(),
       pubDate: z.date(),
