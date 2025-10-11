@@ -5,6 +5,6 @@ import preact from '@astrojs/preact';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://prismatic-cassata-ded51b.netlify.app/',
+  site: 'https://gselzer.github.io/',
   integrations: [preact()],
 });
