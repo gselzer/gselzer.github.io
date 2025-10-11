@@ -1,0 +1,17 @@
+{
+  "name": "dark-doppler",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^4.1.1",
+    "@astrojs/rss": "^4.0.12",
+    "astro": "^5.13.7",
+    "preact": "^10.27.2"
+  }
+}

@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CardCarousel from "../components/BlogCarousel.astro";
+import Greeting from "../components/Greeting.astro";
+const pageTitle = "Home Page";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+	<Greeting />
+	<p>
+		I'm a Software Engineer residing in Chicago, IL.
+	</p>
+	<p>
+		I currently work for the <a href="https://loci.wisc.edu">Elicieri Lab (LOCI)</a> at the University of Wisconsin-Madison, where I actively develop <a href="https://imagej.net/software/fiji/">ImageJ2/Fiji</a> and <a href="https://micro-manager.org/">Micro-Manager</a>. 
+	</p>
+	<p>
+		Check out my various writings on past and present projects:
+	</p>
+	<CardCarousel />
+	<p>
+		When I'm not online, you can find me out on a <a href="https://www.pdga.com/news/what-disc-golf-guide-parents-kids">disc golf</a> course or at the gym. I'm a diehard Milwaukee Brewers fan, and also love board and video games!
+	</p>
+</BaseLayout>

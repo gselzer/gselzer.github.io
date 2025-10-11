@@ -1,0 +1,26 @@
+napari-imagej-2023:
+  title: "napari-imagej: ImageJ ecosystem access from napari"
+  pubDate: 2023-08-18
+  author: "Gabriel J. Selzer, Curtis T. Rueden, Mark C. Hiner, Edward L. Evans III, Kyle I. S. Harrington & Kevin W. Eliceiri"
+  description: "A paper I wrote, published in Nature Methods."
+  tags: ["publication"]
+  redirect: "https://doi.org/10.1038/s41592-023-01990-0"
+  icon: "paper"
+
+scijava-ops-2024:
+  title: "SciJava Ops: an improved algorithms framework for Fiji and beyond"
+  pubDate: 2024-09-26
+  author: "Gabriel J. Selzer, Curtis T. Rueden, Mark C. Hiner, Edward L. Evans, David Kolb, Marcel Wiedenmann, Christian Birkhold, Tim-Oliver Buchholz, Stefan Helfrich, Brian Northan, Alison Walter, Johannes Schindelin, Tobias Pietzsch, Stephan Saalfeld, Michael R. Berthold, Kevin W. Eliceiri"
+  description: "A paper I wrote, published in Frontiers in Bioinformatics."
+  tags: ["publication"]
+  redirect: "https://doi.org/10.3389/fbinf.2024.1435733"
+  icon: "paper"
+
+imagej-scripting-2021:
+  title: "New Extensibility and Scripting Tools in the ImageJ Ecosystem"
+  pubDate: 2021-08-09
+  author: "Niklas A. Gahm, Curtis T. Rueden, Edward L. Evans III, Gabriel Selzer, Mark C. Hiner, Jenu V. Chacko, Dasong Gao, Nathan M. Sherer, Kevin W. Eliceiri"
+  description: "A paper I edited, published in Current Protocols."
+  tags: ["publication"]
+  redirect: "https://doi.org/10.1002/cpz1.204"
+  icon: "paper"

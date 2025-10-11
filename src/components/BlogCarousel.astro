@@ -1,0 +1,226 @@
+---
+import { getCollection } from 'astro:content';
+import Paper from "../icons/paper.astro";
+import Placeholder from "../icons/placeholder.astro";
+const maxPosts = 5;
+
+const blogPosts = await getCollection('blog');
+const externalPosts = await getCollection('external');
+const allPosts = [...blogPosts, ...externalPosts]
+    .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+    .slice(0, maxPosts);
+---
+<div class="carousel-container">
+  <div class="carousel" id="carousel-scroll">
+    {allPosts.map(post => (
+      <a href={`/posts/${post.id}`} class="carousel-card" id={`card-${post.id}`}>
+        <!-- TODO: Might be nice to put an image here eventually -->
+        <div class="card-header">
+          <div class="card-date">
+            {new Date(post.data.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+          </div>
+          <div class="card-icon">
+            {post.data.icon === "paper" ? <Paper /> : <Placeholder />}
+          </div>
+        </div>
+        <div class="card-title">{post.data.title}</div>
+        <div class="card-excerpt">{post.data.description}</div>
+      </a>
+    ))}
+  </div>
+
+  {allPosts.map((post, index) => (
+    <a href={`#card-${post.id}`} class="carousel-btn" data-index={index}></a>
+  ))}
+</div>
+
+<script>
+  const slider = document.getElementById('carousel-scroll');
+  const buttons = document.querySelectorAll('.carousel-btn');
+  const cards = document.querySelectorAll('.carousel-card');
+
+  function updateActiveButton() {
+    if (!slider || !cards.length || !buttons.length) return;
+
+    const sliderRect = slider.getBoundingClientRect();
+    const sliderCenter = sliderRect.left + sliderRect.width / 2;
+
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    cards.forEach((card, index) => {
+      const cardRect = card.getBoundingClientRect();
+      const cardCenter = cardRect.left + cardRect.width / 2;
+      const distance = Math.abs(cardCenter - sliderCenter);
+
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    // Update button states
+    buttons.forEach((button, index) => {
+      if (index === closestIndex) {
+        button.classList.add('active-carousel-btn');
+      } else {
+        button.classList.remove('active-carousel-btn');
+      }
+    });
+  }
+
+  // Update on scroll
+  if (slider) {
+    slider.addEventListener('scroll', updateActiveButton);
+    // Initial update
+    updateActiveButton();
+  }
+</script>
+
+<style>
+  /* Individual blog post cards in the carousel */
+  .carousel-card {
+    background: var(--footer-bg); /* Uses the same background color as the footer */
+    width: 100%; /* Takes full width of its container */
+    margin: 0.5rem; /* Adds space around each card (8px on all sides) */
+    border-radius: 1rem; /* Gives the card rounded corners (16px radius) */
+    color: var(--text-primary); /* Sets text color to the primary text variable */
+    text-decoration: none; /* Removes underlines from links */
+    padding: 1.5rem; /* Adds internal spacing inside the card (24px) */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Creates a subtle shadow for depth */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth animation for hover effects */
+    display: flex; /* Makes this a flexible container for layout */
+    flex-direction: column; /* Stacks child elements vertically */
+    text-align: left; /* Aligns text to the left side */
+    gap: 0.5rem; /* Adds space between child elements (8px) */
+    scroll-snap-align: start; /* Aligns card to snap points when scrolling */
+    flex-shrink: 0; /* Prevents card from shrinking when space is limited */
+  }
+  
+  .carousel-card:focus {
+    outline: none; /* Removes the browser's default focus outline ring */
+  }
+
+  .card-header {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Spaces out date and icon to opposite ends */
+    color: var(--accent-color); /* Uses accent color variable (orange/yellow) */
+  }
+  
+  /* Date text styling */
+  .card-date {
+    align-items: flex-start ;
+    font-size: 0.95rem; /* Slightly smaller than normal text (15.2px) */
+  }
+
+  /* Date text styling */
+  .card-icon {
+    align-items: flex-end ;
+  }
+  
+  /* Title text styling */
+  .card-title {
+    font-size: 1.3rem; /* Larger text for the title (20.8px) */
+    font-weight: bold; /* Makes text thick and prominent */
+    margin-bottom: 0.5rem; /* Adds space below the title (8px) */
+  }
+  
+  /* Description/excerpt text styling */
+  .card-excerpt {
+    font-size: 1rem; /* Normal text size (16px) */
+    color: #b3c2cc; /* Light gray-blue color for less emphasis */
+  }
+
+  /* Universal box model setting */
+  * {
+    box-sizing: border-box; /* Includes padding and border in element's total width/height */
+  }
+
+  /* Main carousel container */
+  .carousel-container {
+    text-align: center; /* Centers content horizontally */
+    overflow: hidden; /* Hides content that extends beyond container */
+  }
+
+  /* Scrollable container for carousel items */
+  .carousel {
+    display: flex; /* Arranges items horizontally in a row */
+    overflow-x: auto; /* Allows horizontal scrolling when content overflows */
+    scroll-snap-type: x mandatory; /* Forces scrolling to snap to specific points */
+    scroll-behavior: smooth; /* Makes scrolling animate smoothly */
+    -webkit-overflow-scrolling: touch; /* Enables smooth scrolling on iOS devices */
+  }
+
+  /* Scrollbar styling for webkit browsers (Chrome, Safari) */
+  .carousel::-webkit-scrollbar {
+    width: 10px; /* Sets scrollbar width */
+    height: 10px; /* Sets scrollbar height */
+  }
+
+  /* Scrollbar handle/thumb styling */
+  .carousel::-webkit-scrollbar-thumb {
+    border-radius: 10px; /* Rounds the scrollbar handle */
+  }
+
+  /* Scrollbar track styling */
+  .carousel::-webkit-scrollbar-track {
+    background: transparent; /* Makes scrollbar track invisible */
+  }
+
+  /* Individual slide containers (not currently used but defined) */
+  .carousel > div {
+    scroll-snap-align: start; /* Aligns slide to snap points */
+    flex-shrink: 0; /* Prevents slide from shrinking */
+    width: 100%; /* Takes full container width */
+    height: 300px; /* Fixed height of 300 pixels */
+    margin-right: 50px; /* Adds space to the right of each slide */
+    border-radius: 10px; /* Rounds the corners */
+    background: #eee; /* Light gray background */
+    transform-origin: center center; /* Sets center point for transformations */
+    transform: scale(1); /* Normal size (no scaling) */
+    transition: transform 0.5s; /* Smooth animation for size changes */
+    position: relative; /* Allows positioning of child elements */
+    
+    display: flex; /* Makes container flexible */
+    justify-content: left; /* Aligns content to the left */
+    align-items: left; /* Aligns content to the left vertically */
+    font-size: 100px; /* Very large text size */
+  }
+
+  /* Navigation buttons styling */
+  .carousel-container > a {
+    display: inline-flex; /* Makes button a flexible inline container */
+    width: 1.5rem; /* Sets button width (24px) */
+    height: 1.5rem; /* Sets button height (24px) */
+    background: var(--text-primary); /* Uses primary text color for background */
+    text-decoration: none; /* Removes underline from links */
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
+    border-radius: 50%; /* Makes button perfectly circular */
+    margin: 0.5rem; /* Adds space below & between button (8px) */
+    position: relative; /* Allows positioning adjustments */
+  }
+
+  /* Button pressed state */
+  .carousel-container > a:active {
+    top: 1px; /* Moves button down 1px when clicked for press effect */
+  }
+
+  /* Active button highlighting */
+  .active-carousel-btn {
+    background: var(--accent-color) !important; /* Uses accent color, overriding other styles */
+  }
+
+  /* Button hover transition effect */
+  .carousel-btn {
+    transition: background-color 0.3s ease; /* Smooth color change animation */
+  }
+
+  svg {
+    color: var(--accent-color);
+    width: 1.5em;
+  }
+</style>

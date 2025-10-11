@@ -1,0 +1,58 @@
+---
+import {Image} from 'astro:assets';
+import me from '../../public/me.jpg';
+---
+<style>
+	/* Typing Effect Animation */
+	.typing-effect {
+	font-family: var(--font-mono);
+	border-right: 2px solid var(--accent-color);
+	width: fit-content;
+	/* margin: 2rem auto 0 auto; */
+	overflow: hidden;
+	letter-spacing: 1px;
+	animation: blink-cursor 0.8s steps(1) infinite;
+	/* Responsive font size that scales with screen width */
+	font-size: clamp(1.2rem, 4vw, 2.5rem);
+	max-width: 100%;
+	/* Reserve space even when empty to prevent layout shift */
+	min-height: 1.5em; /* Ensures consistent height based on font size */
+	max-height: 1.5em; /* Matches min-height to prevent expansion */
+	}
+
+	@keyframes blink-cursor {
+	0%, 100% { border-color: var(--accent-color); }
+	50% { border-color: transparent; }
+	}
+
+	/* Side-by-side image and header */
+	.header-image-row {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		justify-content: flex-start;
+		margin-top: 2rem;
+	}
+	@media screen and (max-width: 600px) {
+		.header-image-row {
+			display: flex;
+			flex-direction: column;
+			gap: 0rem;
+		}
+	}
+
+	.profile-img {
+	min-width: 120px;
+	width: 120px;
+	height: 120px;
+	object-fit: cover;
+	border-radius: 50%;
+	box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+	}
+
+</style>
+<div class="header-image-row">
+    <Image src={me} alt="A picture of me" class="profile-img" />
+    <h1 class="typing-effect" id="greeting"></h1>
+</div>
+<script src="/src/scripts/typing.js" type="module"></script>

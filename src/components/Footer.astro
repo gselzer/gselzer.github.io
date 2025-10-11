@@ -1,0 +1,62 @@
+---
+import Github from "../icons/github.astro";
+import RSS from "../icons/rss.astro";
+import LinkedIn from "../icons/linkedin.astro";
+---
+
+<style>
+  footer {
+    width: 100vw;
+    background: var(--footer-bg);
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-top: auto;
+    padding: 2rem 4vw;
+    box-sizing: border-box;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer-social {
+    align-items: flex-start;
+  }
+
+  .footer-links {
+    align-items: flex-end;
+  }
+
+  svg {
+    color: var(--text-primary);
+    width: 1.5em;
+  }
+
+</style>
+
+
+<footer>
+  <div class="footer-col footer-social">
+    <a href="https://github.com/gselzer" target="_blank" rel="noopener" aria-label="GitHub" class="nav-link">
+      <Github/> GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/gabriel-selzer-386881271/" target="_blank" rel="noopener" aria-label="LinkedIn" class="nav-link">
+      <LinkedIn /> LinkedIn
+    </a>
+    <a href="/rss.xml" target="_blank" rel="noopener" aria-label="RSS Feed" class="nav-link">
+      <RSS /> RSS Feed
+    </a>
+  </div>
+  <div class="footer-col footer-links">
+    <a href="/" class="nav-link">Home</a>
+    <a href="/about" class="nav-link">About</a>
+    <a href="/blog" class="nav-link">Blog</a>
+    <a href="../../public/resume.pdf" class="nav-link">CV</a>
+  </div>
+</footer>

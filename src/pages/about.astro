@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Greeting from "../components/Greeting.astro";
+const pageTitle = "About Me";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <main>
+        <Greeting />
+
+        <section aria-labelledby="about-intro">
+            <h2 id="about-intro" class="sr-only">About</h2>
+            <p>
+                I'm a Software Engineer residing in Chicago, IL.
+                
+                I currently work for the <a href="https://loci.wisc.edu">Elicieri Lab (LOCI)</a> at the University of Wisconsin-Madison, where I actively develop <a href="https://imagej.net/software/fiji/">ImageJ2/Fiji</a> and <a href="https://micro-manager.org/">Micro-Manager</a>. 
+
+                I'm interested in writing software that empowers integration and accessibility, particularly in the scientific domain.
+            </p>
+        </section>
+        <section aria-labelledby="career">
+            <h2 id="career">Career</h2>
+            <p>
+                I joined the Eliceiri lab as a starry-eyed high school graduate in the summer of 2017.
+                
+                At that time, Professor <a href="https://directory.engr.wisc.edu/bme/faculty/eliceiri_kevin">Kevin Eliceiri</a> was looking to bring an undergraduate on to the Fiji team to work on <a href="https://imagej.net/libs/imagej-ops/">ImageJ Ops</a>, a library for <a href="https://en.wikipedia.org/wiki/Declarative_programming">declarative</a> image processing.
+
+                I happily jumped on, working on ImageJ Ops and its successor <a href="https://ops.scijava.org/en/latest/">SciJava Ops</a> for parts of the next <b>seven</b> years.
+
+                I could not have asked for better formative years in my career under the guidance of <a href="https://loci.wisc.edu/staff/rueden-curtis/">Curtis Rueden</a>, who I still have the pleasure of working with today.
+            </p>
+            <p>
+                I received my Bachelor's Degree in 2021, but remained (<em>this will become a trend</em>) in the Elicieri lab as I pursued my Master's degree. As a Master's Student I wrote <a href="https://napari.imagej.net/en/stable/">napari-imagej</a>, a <a href="https://napari.org">napari</a> plugin enabling interoperability with the entire Fiji ecosystem.
+            </p>
+            <p>
+                After receiving my Master's Degree in 2023, I transitioned to a full-time Software Engineer role in the Elicieri lab.
+                
+                While I still enjoy a position on the Fiji team, I now focus on software for image acquisition.
+                
+                In particular, I work on <a href="https://pymmcore-plus.github.io/pymmcore-plus/">pymmcore-plus</a>, and hope I'll eventually become familiar with the C++ core of <a href="https://micro-manager.org/">Micro-Manager</a>. For now, I get to leave that pleasure to the brilliant <a href="https://loci.wisc.edu/staff/tsuchida-mark/">Mark Tsuchida</a>.
+            </p>
+        </section>
+        <section aria-labelledby="contact">
+            <h2 id="contact">Contact</h2>
+            <p>
+                If you'd like to chat, please reach out to me via <a href="https://www.linkedin.com/in/gabriel-selzer-386881271/">LinkedIn</a> or <a href="https://www.github.com/gselzer">GitHub</a>!
+            </p>
+        </section>
+    </main>
+</BaseLayout>
