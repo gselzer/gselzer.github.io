@@ -21,4 +21,4 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 __Important Notice__
 
-This license applies _only_ to the source code within the `/src` directory. It does _not_ apply to the contents of the `/content` directory, which is excluded from the scope of this license.
+This license applies _only_ to the source code within the `/src` directory. It does _not_ apply to the contents of the `/content` or `/public` directories, which is excluded from the scope of this license.
