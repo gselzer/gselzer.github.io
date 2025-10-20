@@ -86,15 +86,15 @@
       {Software Engineer}{May 2024 -- Present}
       {Eliceiri Lab (LOCI), University of Wisconsin-Madison}{Madison, WI}
       \resumeSubHeadingList
-          \resumeItem{\textbullet\ Developed custom Python user interfaces for custom Laser-Scanning and Polarization Microscopes}
-          \resumeItem{\textbullet\ Maintained open-source Python toolkits for general-purpose bio-image acquisition}
+          \resumeItem{\textbullet\ Extracted \href{https://pyapp-kit.github.io/ndv/latest/}{ndv} from internal component to standalone library, enabling reuse across bio-image tools}
+          \resumeItem{\textbullet\ Built histogram visualization for real-time microscope tuning based on user research with imaging scientists}
       \resumeSubHeadingListEnd
   \resumeSubheading
       {(Graduate) Research Assistant}{Aug 2017 -- May 2024}
       {Eliceiri Lab (LOCI), University of Wisconsin-Madison}{Madison, WI}
       \resumeSubHeadingList
-          \resumeItem{\textbullet\ Developed tooling for Java+Python image processing interoperability}
-          \resumeItem{\textbullet\ Developed and maintained image processing toolkits within the Fiji ecosystem}
+          \resumeItem{\textbullet\ Built napari-imagej, enabling napari users to access Fiji's decades of image processing tools without Java expertise}
+          \resumeItem{\textbullet\ Architected SciJava Ops declarative algorithms framework, targeted for inclusion in Fiji core, reaching thousands of daily users}
       \resumeSubHeadingListEnd
 \resumeSubHeadingListEnd
 
@@ -112,8 +112,9 @@
       {\href{https://napari.imagej.net/en/stable/}{napari-imagej}}{Dec 2021 -- Aug 2023}
       {Interoperable user interface bridging napari and Fiji/ImageJ}{Python, Java, napari, Fiji}
       \resumeSubHeadingList
-        \resumeItem{\textbullet\ Implemented transparent, on-demand conversions between ImageJ data structures and NumPy/Python equals}
-        \resumeItem{\textbullet\ Engineered asynchronous ImageJ2 initialization to avoid blocking napari’s user interface}
+        \resumeItem{\textbullet\ Leveraged zero-copy data conversions between ImageJ and NumPy for high-performance interoperability}
+        \resumeItem{\textbullet\ Engineered asynchronous ImageJ2 initialization with Qt QThreads to avoid seconds to minutes of UI blocking}
+        \resumeItem{\textbullet\ Implemented automatic UI generation for Fiji plugins, enabling invocation as if they were native Python functions}
         \resumeItem{\textbullet\ \textbf{Impact: 31 Github stars, approximately 80 downloads per month, communications paper published in Nature Methods}}
       \resumeSubHeadingListEnd
 \resumeSubheading
