@@ -25,3 +25,11 @@ pnpm-debug.log*
 
 # VS Code
 .vscode/
+
+# Ignore unused LaTeX generated files
+# - ignore all files
+/public/cv/*
+# - but keep these three
+!/public/cv/publications.bib
+!/public/cv/resume.tex
+!/public/cv/resume.pdf
