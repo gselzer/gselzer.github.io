@@ -27,8 +27,13 @@ pnpm-debug.log*
 .vscode/
 
 # Ignore unused LaTeX generated files
-# - ignore all files
-/public/resume.*
-# - but keep these three
-!/public/resume.tex
-!/public/resume.pdf
+/public/resume.aux
+/public/resume.bbl
+/public/resume.bcf
+/public/resume.blg
+/public/resume.fdb_latexmk
+/public/resume.fls
+/public/resume.log
+/public/resume.out
+/public/resume.run.xml
+/public/resume.synctex.gz
