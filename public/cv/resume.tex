@@ -1,6 +1,6 @@
 \documentclass[letterpaper,10pt]{article}
 
-\usepackage[style=phys, sorting=ydnt]{biblatex}  % or style=apa, ieee, etc.
+\usepackage[style=phys, sorting=ydnt, maxbibnames=3]{biblatex}  % or style=apa, ieee, etc.
 \addbibresource{publications.bib}
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
@@ -104,8 +104,8 @@
       {\href{https://pyapp-kit.github.io/ndv/latest/}{ndv}}{Jun 2024 -- Present}
       {n-dimensional data viewer}{Python, VisPy, Qt}
       \resumeSubHeadingList
-          \resumeItem{\textbullet\ Co-developed declarative, evented data model}
-          \resumeItem{\textbullet\ Developed histogram view for real-time data analysis}
+          \resumeItem{\textbullet\ Co-developed an evented MVC architecture enabling deployment across PyQt, Jupyter, and WxPython with pluggable backends (VisPy, pygfx)}
+          \resumeItem{\textbullet\ Implemented asynchronous histogram visualization with multi-channel support, handling remote/large datasets through pipelined slicing and display updates}
           \resumeItem{\textbullet\ \textbf{Impact: 81 Github stars, approximately 1000 downloads per month, central component of \href{https://github.com/pymmcore-plus/pymmcore-gui}{pymmcore-gui}}}
       \resumeSubHeadingListEnd
   \resumeSubheading
@@ -121,8 +121,8 @@
       {\href{https://ops.scijava.org/en/latest/}{SciJava Ops}}{Apr 2018 -- Sep 2024}
       {Declarative Image Processing for Fiji/ImageJ}{Java 11, Fiji, OpenCV}
       \resumeSubHeadingList
-        \resumeItem{\textbullet\ Engineered a unified syntax for algorithm invocation, covering ImageJ, OpenCV, and NumPy}
-        \resumeItem{\textbullet\ Engineered an abstract plugin discovery system with backends in YAML and Java's JPMS}
+        \resumeItem{\textbullet\ Designed declarative algorithm discovery and invocation across multiple libraries (ImageJ, OpenCV, NumPy)}
+        \resumeItem{\textbullet\ Implemented type-based algorithm routing with automatic data conversion, enabling data-structure-agnostic invocation}
         \resumeItem{\textbullet\ \textbf{Impact: Slated for inclusion in Core Fiji, Paper published in Frontiers in Bioinformatics}}
       \resumeSubHeadingListEnd
 \resumeSubHeadingListEnd
