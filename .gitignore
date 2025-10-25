@@ -28,8 +28,7 @@ pnpm-debug.log*
 
 # Ignore unused LaTeX generated files
 # - ignore all files
-/public/cv/*
+/public/resume.*
 # - but keep these three
-!/public/cv/publications.bib
-!/public/cv/resume.tex
-!/public/cv/resume.pdf
+!/public/resume.tex
+!/public/resume.pdf
