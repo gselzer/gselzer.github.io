@@ -4,25 +4,26 @@ const { frontmatter } = Astro.props;
 ---
 <BaseLayout pageTitle={frontmatter.title}>
     <div class="post-header">
-      <p class="eyebrow">Published {frontmatter.pubDate.toLocaleDateString()}</p>
       <h1>{frontmatter.title}</h1>
       {frontmatter.description && (
         <p class="description">{frontmatter.description}</p>
       )}
       <div class="meta">
-        <span class="meta-item">By {frontmatter.author}</span>
+        <span class="pill">By {frontmatter.author}</span>
+        <span class="pill">{frontmatter.pubDate.toLocaleDateString()}</span>
       </div>
     </div>
     {frontmatter.image && (
       <img class="hero-img" src={frontmatter.image.url} alt={frontmatter.image.alt} />
     )}
 
+    <slot />
+
     <div class="tags">
       {frontmatter.tags.map((tag) => (
-        <a class="tag" href={`/tags/${tag}`}>{tag}</a>
+        <a class="pill tag" href={`/tags/${tag}`}>{tag}</a>
       ))}
     </div>
-    <slot />
 </BaseLayout>
 
 <style>
@@ -34,14 +35,6 @@ const { frontmatter } = Astro.props;
     margin: 0 0 1.75rem;
     display: grid;
     gap: 0.35rem;
-  }
-
-  .eyebrow {
-    margin: 0;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--accent-color);
   }
 
   h1 {
@@ -62,22 +55,7 @@ const { frontmatter } = Astro.props;
     gap: 0.5rem;
   }
 
-  .meta-item {
-    padding: 0.3rem 0.75rem;
-    border-radius: 999px;
-    background: linear-gradient(135deg, var(--accent-bg-strong), var(--accent-bg-light));
-    color: var(--text-primary);
-    font-size: 0.95rem;
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin: 1rem 0 1.25rem;
-  }
-
-  .tag {
+  .pill {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
@@ -88,6 +66,16 @@ const { frontmatter } = Astro.props;
     background: linear-gradient(135deg, var(--accent-bg-strong), var(--accent-bg-light));
     color: var(--text-primary);
     text-decoration: none;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1rem 0 1.25rem;
+  }
+
+  .tag {
     transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
   }
 

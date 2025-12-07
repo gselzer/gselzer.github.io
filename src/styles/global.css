@@ -85,3 +85,13 @@ html::before {
 .nav-link:hover {
   color: var(--accent-color);
 }
+
+/* Inline code only (not in pre blocks) */
+p code,
+li code,
+td code {
+  color: var(--accent-color);
+  background: var(--accent-bg-light);
+  padding: 0.2em 0.4em;
+  border-radius: 0.3em;
+}
