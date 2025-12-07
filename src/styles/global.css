@@ -72,6 +72,10 @@ html::before {
   box-sizing: border-box;
 }
 
+hr {
+  color: var(--footer-bg)
+}
+
 .nav-link {
   display: flex;
   align-items: center;

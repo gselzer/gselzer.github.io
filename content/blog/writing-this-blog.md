@@ -22,9 +22,9 @@ When rebuilding, I focused on two main priorities:
 
 ## Tech Stack
 
-The first tool I tried was [Astro](https://astro.build/), and it worked well enough that I stopped looking for alternatives. Simple deploys and minimal JavaScript fit my skillset and the scope of this site.
+The first tool I tried was [Astro](https://astro.build/), and it seemed to align well enough with my needs so I went ahead with it. Simple deploys and minimal JavaScript fit my skillset and the scope of this site.
 
-My one lingering concern after the docs was deployment. Astro's guides push the [Netlify](https://www.netlify.com/) deployment platform, but I did not want another account, an ugly default URL, or a paid tier just to rename it. I wanted to stay on GitHub Pages, and thankfully Astro ships [built-in support](https://docs.astro.build/en/guides/deploy/github/) for that path.
+My one lingering concern after the docs was deployment. Astro's guides push the [Netlify](https://www.netlify.com/) deployment platform, but I did not want another account, an ugly default URL, or a paid tier just to rename it. I wanted to stay on GitHub Pages, and thankfully Astro has [built-in support](https://docs.astro.build/en/guides/deploy/github/) for that path.
 
 The deployment flow is simple: push to `master`, and GitHub Actions rebuilds the site and deploys the `dist/` folder. No servers, no databases, no configuration drift.
 
