@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const archiveItems = await getCollection('archive');
+  return archiveItems.map(item => ({
+    params: { archive: item.id },
+    props: { page: item },
+  }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+---
+
+<!-- Display the page plainly as it was -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/me.jpg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{page.data.title || ''}</title>
+	</head>
+    <body>
+        {page.data.title && (<h1>{page.data.title}</h1>)}
+        <Content />
+    </body>
+</html>

@@ -34,5 +34,11 @@ const external = defineCollection({
       redirect: z.string()
     })
 });
+const archive = defineCollection({
+    loader: glob({ pattern: '**/[^_]*.md', base: "./content/archive" }),
+    schema: z.object({
+      title: z.string().optional(),
+    })
+});
 // Export a single `collections` object to register your collection(s)
-export const collections = { blog, external};
+export const collections = { blog, external, archive};

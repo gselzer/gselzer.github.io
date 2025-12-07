@@ -18,7 +18,7 @@ const { frontmatter } = Astro.props;
     )}
 
     <slot />
-
+    <hr />
     <div class="tags">
       {frontmatter.tags.map((tag) => (
         <a class="pill tag" href={`/tags/${tag}`}>{tag}</a>
