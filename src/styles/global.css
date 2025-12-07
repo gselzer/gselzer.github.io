@@ -1,16 +1,21 @@
 
 :root {
-  /* Color Variables */
-  --primary-bg-start: #212D40;
-  --primary-bg-end: #364156;
-  --text-primary: #EDE7E3;
-  --accent-color: #d6596e;
-  --footer-bg: #11151C;
+  /* Backgrounds */
+  --primary-bg-start: rgba(33, 45, 64, 1);
+  --primary-bg-end: rgba(54, 65, 86, 1);
+  --footer-bg: rgba(17, 21, 28, 1);
   --dot-pattern: var(--footer-bg);
-  
-  /* Typography */
-  --font-mono: 'Fira Mono', 'Consolas', monospace;
+
+  /* Text */
+  --text-primary: rgba(237, 231, 227, 1);
   --font-sans: sans-serif;
+  --font-mono: 'Fira Mono', 'Consolas', monospace;
+
+  /* Accent & interactive */
+  --accent-color: rgba(214, 89, 110, 1);
+  --accent-bg-strong: rgba(214, 89, 110, 0.18);
+  --accent-bg-light: rgba(214, 89, 110, 0.08);
+  --tag-shadow: rgba(0, 0, 0, 0.25);
 }
 
 .content {

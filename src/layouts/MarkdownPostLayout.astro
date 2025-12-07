@@ -3,35 +3,105 @@ import BaseLayout from "./BaseLayout.astro";
 const { frontmatter } = Astro.props;
 ---
 <BaseLayout pageTitle={frontmatter.title}>
-    <h1>{frontmatter.title}</h1>
-    <p>{frontmatter.pubDate.toLocaleDateString()}</p>
-    <p><em>{frontmatter.description}</em></p>
-    <p>Written by: {frontmatter.author}</p>
-    <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
+    <div class="post-header">
+      <p class="eyebrow">Published {frontmatter.pubDate.toLocaleDateString()}</p>
+      <h1>{frontmatter.title}</h1>
+      {frontmatter.description && (
+        <p class="description">{frontmatter.description}</p>
+      )}
+      <div class="meta">
+        <span class="meta-item">By {frontmatter.author}</span>
+      </div>
+    </div>
+    {frontmatter.image && (
+      <img class="hero-img" src={frontmatter.image.url} alt={frontmatter.image.alt} />
+    )}
 
     <div class="tags">
       {frontmatter.tags.map((tag) => (
         <a class="tag" href={`/tags/${tag}`}>{tag}</a>
       ))}
+    </div>
     <slot />
 </BaseLayout>
 
 <style>
   a {
-    color: #00539F;
+    color: var(--link-color);
+  }
+
+  .post-header {
+    margin: 0 0 1.75rem;
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .eyebrow {
+    margin: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent-color);
+  }
+
+  h1 {
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .description {
+    margin: 0.4rem 0 0.75rem;
+    color: var(--text-primary);
+    opacity: 0.9;
+    font-size: 1.05rem;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .meta-item {
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--accent-bg-strong), var(--accent-bg-light));
+    color: var(--text-primary);
+    font-size: 0.95rem;
   }
 
   .tags {
     display: flex;
     flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1rem 0 1.25rem;
   }
 
   .tag {
-    margin: 0.25em;
-    border: dotted 1px #a1a1a1;
-    border-radius: .5em;
-    padding: .5em 1em;
-    font-size: 1.15em;
-    background-color: #F8FCFD;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.95em;
+    border-radius: 999px;
+    border: 1px solid var(--accent-color);
+    background: linear-gradient(135deg, var(--accent-bg-strong), var(--accent-bg-light));
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+  }
+
+  .tag:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px var(--tag-shadow);
+    background: var(--accent-color);
+    color: var(--text-primary);
+  }
+
+  .hero-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 1.5rem 0;
   }
 </style>
