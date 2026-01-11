@@ -7,6 +7,7 @@ author: "Gabriel Selzer"
 image:
     url: '/posts/understanding-kendall-tau/penny.jpg'
     alt: 'Penny, a gray and white tabby cat looking into the camera, laying on the floor with a pink ball between her paws.'
+    caption: 'Penny playing with the Ball, her (current) favorite toy.'
 tags: ["imgal", "statistics"]
 icon: "post"
 ---
