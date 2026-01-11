@@ -14,7 +14,12 @@ const { frontmatter } = Astro.props;
       </div>
     </div>
     {frontmatter.image && (
-      <img class="hero-img" src={frontmatter.image.url} alt={frontmatter.image.alt} />
+      <figure class="hero-figure">
+        <img class="hero-img" src={frontmatter.image.url} alt={frontmatter.image.alt} />
+        {frontmatter.image.caption && (
+          <figcaption>{frontmatter.image.caption}</figcaption>
+        )}
+      </figure>
     )}
 
     <slot />
@@ -86,10 +91,95 @@ const { frontmatter } = Astro.props;
     color: var(--text-primary);
   }
 
+  /* Hero image (uses less margin than content figures to stay close to post header) */
+  .hero-figure {
+    margin: 1.5rem 0;
+  }
+
+  /* Hero image always spans full width (content images use max-width instead) */
   .hero-img {
     display: block;
     width: 100%;
     height: auto;
+    margin: 0 auto;
+  }
+
+  /* Content images */
+  :global(img) {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 2rem auto;
+  }
+
+  /* Figure captions */
+  :global(figure) {
+    margin: 2rem auto;
+    text-align: center;
+  }
+
+  :global(figure img) {
+    margin: 0 auto;
+  }
+
+  :global(figcaption) {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    opacity: 0.8;
+    font-style: italic;
+    max-width: 90%;
+    margin: 0.75rem auto 0;
+    line-height: 1.4;
+  }
+
+  /* Table styling */
+  :global(table) {
+    width: 100%;
+    border-collapse: collapse;
     margin: 1.5rem 0;
+    font-size: 0.95rem;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--accent-color);
+  }
+
+  :global(thead) {
+    border-bottom: 2px solid var(--accent-color);
+  }
+
+  :global(th) {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--accent-color);
+    border-left: 1px solid rgba(128, 128, 128, 0.2);
+  }
+
+  :global(th:first-child) {
+    border-left: none;
+  }
+
+  :global(td) {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    border-left: 1px solid rgba(128, 128, 128, 0.2);
+  }
+
+  :global(td:first-child) {
+    border-left: none;
+  }
+
+  :global(tbody tr) {
+    transition: background-color 150ms ease;
+  }
+
+  :global(tbody tr:last-child td) {
+    border-bottom: none;
+  }
+
+  :global(tbody tr:nth-child(even)) {
+    background-color: rgba(128, 128, 128, 0.05);
   }
 </style>

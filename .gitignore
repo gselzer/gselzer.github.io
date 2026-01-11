@@ -37,3 +37,6 @@ pnpm-debug.log*
 /public/resume.out
 /public/resume.run.xml
 /public/resume.synctex.gz
+
+# AI
+.claude/

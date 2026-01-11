@@ -3,8 +3,7 @@ import { glob, file } from "astro/loaders";
 // Import utilities from `astro:content`
 import { z, defineCollection } from "astro:content";
 // Define a `loader` and `schema` for each collection
-const blog = defineCollection({
-    loader: glob({ pattern: '**/[^_]*.md', base: "./content/blog" }),
+const blog_schema = {
     schema: z.object({
       title: z.string(),
       pubDate: z.date(),
@@ -12,11 +11,20 @@ const blog = defineCollection({
       author: z.string(),
       image: z.object({
         url: z.string(),
-        alt: z.string()
+        alt: z.string(),
+        caption: z.string().optional()
       }).optional(),
       icon: z.string().optional(),
       tags: z.array(z.string())
     })
+}
+const blog = defineCollection({
+    loader: glob({ pattern: '**/[^_]*.md', base: "./content/blog" }),
+    ...blog_schema,
+});
+const drafts = defineCollection({
+    loader: glob({ pattern: '**/[^_]*.md', base: "./content/blog_drafts" }),
+    ...blog_schema,
 });
 const external = defineCollection({
     loader: file('./content/external.yaml'),
@@ -27,7 +35,8 @@ const external = defineCollection({
       author: z.string(),
       image: z.object({
         url: z.string(),
-        alt: z.string()
+        alt: z.string(),
+        caption: z.string().optional()
       }).optional(),
       icon: z.string().optional(),
       tags: z.array(z.string()),
@@ -41,4 +50,4 @@ const archive = defineCollection({
     })
 });
 // Export a single `collections` object to register your collection(s)
-export const collections = { blog, external, archive};
+export const collections = { blog, drafts, external, archive};
