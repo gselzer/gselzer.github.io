@@ -104,7 +104,7 @@ From these edge cases, we can see:
 
 Hopefully, with some basic intuition about Kendall's Tau, we can now understand some important variants!
 
-# Kendall's Tau **B**
+# Kendall's Tau and ties
 
 There are many situations where rankings have *ties*. Consider the case where Lucy cannot decide whether she likes the String or the Ball better. In fact, they're *tied* for her new favorite toy:
 
@@ -126,7 +126,12 @@ Now, if we consider all of those $(i, j)$ toy pairs, there's one pair where we *
 |(Ball, Mouse) | Yes | Yes | Yes |
 |(Laser, Mouse) | Yes | Yes | Yes |
 
-## The Formula
+## Kendall's Tau **a**
+
+When Kendall published the first Tau statistic he did not account for rank ties and their implications. In practice ties exist in real data and must be broken to successfully compute Kendall's Tau. In order to break the ties some algorithms use random selection (*e.g.* Fisher-Yates shuffling)
+to break ties. This is okay, but is *non-deterministic* which is a problem for scientific appplications that need to achieve reproducibility.
+
+## Kendall's Tau **b**
 
 Kendall later amended his tau coefficient to encapsulate these cases [[2]](#references). Since ties neither concord nor discord, they're naturally excluded from the numerator. The denominator, however, incorporates new terms ($n_x$ and $n_y$) to account for ties. Today, this version is called $\tau_B$ (although he originally called it $\tau_s$):
 
@@ -399,11 +404,11 @@ As expected, $\tau_{wB}\approx 0.619$ is much higher than $\tau_w\approx -0.176$
 
 # Finale: The Use Case
 
-As I mentioned at the beginning of this post, I've been helping my colleague clean up `imgal`'s implementation of **Weighted Kendall's Tau B**. This metric is a key component of SACA, a colocalization metric developed by Shulei Wang and our former colleague Ellen Arena [[5]](#references). It's a new technique that isn't yet widely available - providing a fast, open implementation was one of the core motivations for the creation of `imgal`.
+As I mentioned at the beginning of this post, I've been helping my colleague clean up `imgal`'s implementation of **Weighted Kendall's Tau B**. This metric is a key component of Spatially Adaptive Colocalization Analysis (SACA) framework, a colocalization metric developed by Shulei Wang and our former colleague Ellen Arena [[5]](#references). It's a new technique that removes the need for a human to designate a region of interest and takes the spatial characterstics of the data into account. SACA in its 2D and 3D implementations isn't widely available yet so providing a fast, documented, and open implementation was one of the core motivations for the creation of `imgal`.
 
-Colocalization metrics like SACA help scientists quantify how different biomarkers appear together within a sample. To do this, they capture multiple images (**channels**) of their sample, each exciting different biomarkers. Our question is whether (and **where**) those biomarkers coincide. Understanding colocalization patterns helps reveal biological relationships—whether proteins interact, whether cellular processes are coordinated, or whether disease markers cluster together.
+Colocalization metrics like SACA help scientists quantify how different cellular markers (*e.g.* fluorescent fusion proteins) correlate and/or co-occur spatially within a sample. To do this, they capture multi-channel 2 or 3D images of their sample, each exciting different fluorescent targets. Our question is whether (and **where**) those fluorescent targets colocalize. Understanding colocalization patterns helps reveal biological relationships—whether proteins interact, whether cellular processes are coordinated, or whether disease markers cluster together.
 
-To compute colocalization SACA derives rankings for each location in the channel images, and then uses Weighted Kendall's Tau B to compute a colocalization coefficient. These rankings come from the intensities in a neighborhood around that location (say, a 5x5 rectangle centered at the location, ordered row-by-row). Pixels farther away say less about colocalization than direct neighbors, so SACA uses *weights* that promote closer pixels in the correlation score.
+To compute colocalization "strength" SACA derives rankings for each location in the channel images, and then uses Weighted Kendall's Tau B to compute a colocalization coefficient. These rankings come from the intensities in a circular neighborhood defined by a square kernel with an embedded Euclidean circle weighting where areas outside the circle have a weight of 0. Candidate pixels farther away from the center of the neighborhood say less about colocalization than closer neighbors, so SACA uses *weights* that decay towards the edge of the circle to promote closer pixels in the correlation score.
 
 In addition, SACA requires a tie-handling variant of Kendall's Tau because microscopy cameras typically produce images of 16-bit unsigned integers. With a 512x512 image, the [pigeonhole principle](https://en.wikipedia.org/wiki/Pigeonhole_principle) guarantees some pixels in the image have the same intensity, and they could end up being close together.
 
