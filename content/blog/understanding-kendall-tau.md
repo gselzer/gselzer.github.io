@@ -1,6 +1,6 @@
 ---
 title: "Understanding Kendall's Tau"
-pubDate: 2026-01-10
+pubDate: 2026-01-13
 description: "My notes from a deep dive into Kendall's Tau coefficient"
 author: "Gabriel Selzer"
 # Thanks WikiMedia!
