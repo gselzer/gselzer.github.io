@@ -104,7 +104,7 @@ From these edge cases, we can see:
 
 Hopefully, with some basic intuition about Kendall's Tau, we can now understand some important variants!
 
-# Kendall's Tau and ties
+# Kendall's Tau **B**
 
 There are many situations where rankings have *ties*. Consider the case where Lucy cannot decide whether she likes the String or the Ball better. In fact, they're *tied* for her new favorite toy:
 
@@ -126,14 +126,11 @@ Now, if we consider all of those $(i, j)$ toy pairs, there's one pair where we *
 |(Ball, Mouse) | Yes | Yes | Yes |
 |(Laser, Mouse) | Yes | Yes | Yes |
 
-## Kendall's Tau **a**
+Some implementations of Kendall's Tau use *non-deterministic* methods to break any ties (using, for example, Fisher-Yates shuffling [[2]](#references)) but for scientific applications we require a reproducible approach.
 
-When Kendall published the first Tau statistic he did not account for rank ties and their implications. In practice ties exist in real data and must be broken to successfully compute Kendall's Tau. In order to break the ties some algorithms use random selection (*e.g.* Fisher-Yates shuffling)
-to break ties. This is okay, but is *non-deterministic* which is a problem for scientific appplications that need to achieve reproducibility.
+## The Formula
 
-## Kendall's Tau **b**
-
-Kendall later amended his tau coefficient to encapsulate these cases [[2]](#references). Since ties neither concord nor discord, they're naturally excluded from the numerator. The denominator, however, incorporates new terms ($n_x$ and $n_y$) to account for ties. Today, this version is called $\tau_B$ (although he originally called it $\tau_s$):
+Fortunately, Kendall later amended his tau coefficient to encapsulate these cases [[3]](#references) in a deterministic way. Since ties neither concord nor discord, they're naturally excluded from the numerator. The denominator, however, incorporates new terms ($n_x$ and $n_y$) to account for ties. Today, this version is called $\tau_B$ (although he originally called it $\tau_s$):
 
 $$$
 \begin{align*}
@@ -279,7 +276,7 @@ It's common in statistics to put more emphasis on particular indices within the 
 
 ## The Formula
 
-Kendall himself didn't address weighting, but Grace Shieh did years later [[3]](#references). Using notation akin to the unweighted Kendall's Tau:
+Kendall himself didn't address weighting, but Grace Shieh did years later [[4]](#references). Using notation akin to the unweighted Kendall's Tau:
 
 $$$
 \begin{align*}
@@ -290,7 +287,7 @@ $$$
 \end{align*}
 $$$
 
-The formula is similar to unweighted $\tau$, but each pair $(i,j)$ gets multiplied by its pair weight $v_iv_j$. Shieh's original formulation uses a general weight function $w_{ij}$ that can depend on both indices, which is useful for more complex weighting schemes [[4]](#references), but many implementations only support index weights as shown above.
+The formula is similar to unweighted $\tau$, but each pair $(i,j)$ gets multiplied by its pair weight $v_iv_j$. Shieh's original formulation uses a general weight function $w_{ij}$ that can depend on both indices, which is useful for more complex weighting schemes [[5]](#references), but many implementations only support index weights as shown above.
 
 ## Example
 
@@ -404,11 +401,11 @@ As expected, $\tau_{wB}\approx 0.619$ is much higher than $\tau_w\approx -0.176$
 
 # Finale: The Use Case
 
-As I mentioned at the beginning of this post, I've been helping my colleague clean up `imgal`'s implementation of **Weighted Kendall's Tau B**. This metric is a key component of Spatially Adaptive Colocalization Analysis (SACA) framework, a colocalization metric developed by Shulei Wang and our former colleague Ellen Arena [[5]](#references). It's a new technique that removes the need for a human to designate a region of interest and takes the spatial characterstics of the data into account. SACA in its 2D and 3D implementations isn't widely available yet so providing a fast, documented, and open implementation was one of the core motivations for the creation of `imgal`.
+As I mentioned at the beginning of this post, I've been helping my colleague clean up `imgal`'s implementation of **Weighted Kendall's Tau B**. This metric is a key component of Spatially Adaptive Colocalization Analysis (SACA), a colocalization framework developed by Shulei Wang and our former colleague Ellen Arena [[6]](#references). Unlike many of its alternatives, it doesn't require a human (or AI!) to designate a region of interest and accounts for the spatial characterstics of the data. Programmatic SACA implementations aren't widely available, so providing a fast, well-documented, and open implementation was one of the core motivations for the creation of `imgal`.
 
-Colocalization metrics like SACA help scientists quantify how different cellular markers (*e.g.* fluorescent fusion proteins) correlate and/or co-occur spatially within a sample. To do this, they capture multi-channel 2 or 3D images of their sample, each exciting different fluorescent targets. Our question is whether (and **where**) those fluorescent targets colocalize. Understanding colocalization patterns helps reveal biological relationships—whether proteins interact, whether cellular processes are coordinated, or whether disease markers cluster together.
+Colocalization metrics like SACA help scientists quantify how different cellular markers (*e.g.* fluorescent fusion proteins) correlate and/or co-occur spatially within a sample. To do this, biologists capture multi-channel images of a sample, where each channel excites a different fluorescent target. By quantifying whether (and **where**) those fluorescent targets colocalize, we can better understand the captured markers' biological relationships—whether proteins interact, whether cellular processes are coordinated, or whether disease markers cluster together.
 
-To compute colocalization "strength" SACA derives rankings for each location in the channel images, and then uses Weighted Kendall's Tau B to compute a colocalization coefficient. These rankings come from the intensities in a circular neighborhood defined by a square kernel with an embedded Euclidean circle weighting where areas outside the circle have a weight of 0. Candidate pixels farther away from the center of the neighborhood say less about colocalization than closer neighbors, so SACA uses *weights* that decay towards the edge of the circle to promote closer pixels in the correlation score.
+To compute colocalization strength, SACA derives rankings for each location in the channel images, and then uses Weighted Kendall's Tau B to compute a colocalization coefficient. These rankings come from the intensities in a circular neighborhood around each location. Candidate pixels farther away from the center of the neighborhood say less about colocalization than closer neighbors, so SACA uses a **weighted** Kendall's Tau, with weights decaying towards the edge of the circle.
 
 In addition, SACA requires a tie-handling variant of Kendall's Tau because microscopy cameras typically produce images of 16-bit unsigned integers. With a 512x512 image, the [pigeonhole principle](https://en.wikipedia.org/wiki/Pigeonhole_principle) guarantees some pixels in the image have the same intensity, and they could end up being close together.
 
@@ -422,14 +419,20 @@ SACA is iterative, computing Weighted Kendall's Tau B for **every pixel, multipl
 
 To make SACA viable for real biological research, we are motivated to make our Kendall's Tau implementations fast (and, of course, correct!), and to do *that*, we must understand all of the algorithm's variants. As such, I've recorded my understanding here—understanding that will hopefully lead to a correct, efficient SACA implementation in `imgal`.
 
+# Acknowledgements
+
+Thanks to my colleague [Ed Evans](https://loci.wisc.edu/staff/evans-ed/) for reviewing this draft and providing valuable technical insights on SACA and colocalization analysis. His feedback greatly improved the accuracy of this post.
+
 # References
 
 [1] https://doi.org/10.1093%2Fbiomet%2F30.1-2.81
 
-[2] https://doi.org/10.2307%2F2332303 
+[2] https://github.com/scijava/scijava/blob/13f00a282b10cddc79846617e2ec4618628fc60a/scijava-ops-image/src/main/java/org/scijava/ops/image/coloc/saca/WtKendallTau.java#L136-L143
 
-[3] https://doi.org/10.1016/S0167-7152(98)00006-6
+[3] https://doi.org/10.2307%2F2332303 
 
-[4] https://doi.org/10.1145/2736277.2741088
+[4] https://doi.org/10.1016/S0167-7152(98)00006-6
 
-[5] https://doi.org/10.1109/tip.2019.2909194
+[5] https://doi.org/10.1145/2736277.2741088
+
+[6] https://doi.org/10.1109/tip.2019.2909194
