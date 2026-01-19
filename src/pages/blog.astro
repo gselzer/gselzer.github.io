@@ -12,7 +12,7 @@ const pageTitle = "Writings";
 	<ul>
 		{allPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()).map((post: any) => <BlogPost post={post} />)}
 	</ul>
-	<h1>Other Writings</h1>
+	<h1>Other Writings and Talks</h1>
 	<ul>
 		{allLinks.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()).map((post: any) => <BlogPost post={post} />)}
 	</ul>
