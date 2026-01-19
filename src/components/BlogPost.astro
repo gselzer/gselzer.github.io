@@ -1,4 +1,53 @@
 ---
-const { url, title } = Astro.props;
+import Paper from "../icons/paper.astro";
+import Post from "../icons/post.astro";
+import Placeholder from "../icons/placeholder.astro";
+import Youtube from "../icons/youtube.astro";
+
+const iconComponents = {
+	paper: Paper,
+	post: Post,
+	default: Placeholder,
+	youtube: Youtube,
+};
+
+const { post } = Astro.props;
+
+const isExternal = !!post?.data?.redirect;
+const url = isExternal ? post.data.redirect : `/posts/${post.id}`;
+const title = post?.data?.title ?? post.id;
+const icon = post?.data?.icon;
+
+const IconComponent = iconComponents[(typeof icon === "string" ? icon : "default") as keyof typeof iconComponents];
 ---
-<li><a href={`${url}`}>{title}</a></li>
+
+<li class="blog-list-item">
+	<a href={`${url}`} class="blog-list-link">
+		<span class="blog-list-icon"><IconComponent /></span>
+		<span class="blog-list-title">{title}</span>
+	</a>
+</li>
+
+<style>
+	.blog-list-item {
+		list-style: none;
+		margin: 0.25rem 0;
+	}
+
+	.blog-list-link {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		text-decoration: none;
+	}
+
+	.blog-list-link:hover {
+		text-decoration: underline;
+	}
+
+	.blog-list-icon :global(svg) {
+		color: var(--text-primary);
+		width: 1.25em;
+		height: 1.25em;
+	}
+</style>

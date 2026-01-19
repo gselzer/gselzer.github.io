@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Paper from "../icons/paper.astro";
 import Post from "../icons/post.astro";
 import Placeholder from "../icons/placeholder.astro";
+import Youtube from '../icons/youtube.astro';
 
 const maxPosts = 5;
 
@@ -10,7 +11,8 @@ const maxPosts = 5;
 const iconComponents = {
   paper: Paper,
   post: Post,
-  default: Placeholder
+  default: Placeholder,
+  youtube: Youtube,
 };
 
 const getIcon = (iconName: any) => iconComponents[(typeof iconName === 'string' ? iconName : 'default') as keyof typeof iconComponents];

@@ -1,3 +1,5 @@
+## -- Papers -- ##
+
 napari-imagej-2023:
   title: "napari-imagej: ImageJ ecosystem access from napari"
   pubDate: 2023-08-18
@@ -24,3 +26,23 @@ imagej-scripting-2021:
   tags: ["publication"]
   redirect: "https://doi.org/10.1002/cpz1.204"
   icon: "paper"
+
+## -- Talks (YouTube) -- ##
+
+napari-imagej-2023-i2k:
+  title: "napari-imagej: using ImageJ inside Python's napari data viewer"
+  pubDate: 2023-10-17
+  author: "Gabriel Selzer"
+  description: "A virtual workshop I gave for Halfway to I2K 2023"
+  tags: ["talk"]
+  redirect: "https://youtu.be/xgbq1nk1mAA?si=gFTXUEbqxLuINZNg"
+  icon: "youtube"
+
+fiji-python-2024-i2k:
+  title: "Using Fiji from Python-based software"
+  pubDate: 2024-10-30
+  author: "Gabriel Selzer"
+  description: "A virtual workshop I gave for Virtual I2K 2024"
+  tags: ["talk"]
+  redirect: "https://youtu.be/F1CIUxwciuU?si=NPyNcDm5uHdT8mNO"
+  icon: "youtube"
