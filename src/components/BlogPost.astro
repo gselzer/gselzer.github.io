@@ -21,12 +21,11 @@ const icon = post?.data?.icon;
 const IconComponent = iconComponents[(typeof icon === "string" ? icon : "default") as keyof typeof iconComponents];
 ---
 
+<li class="blog-list-item">
 	<a href={`${url}`} class="blog-list-link">
 		<span class="blog-list-icon"><IconComponent /></span>
 		<span class="blog-list-title">{title}</span>
 	</a>
-  
-</li>
 </li>
 
 <style>
