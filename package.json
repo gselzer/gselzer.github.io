@@ -9,11 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/preact": "^4.1.1",
-    "@astrojs/rss": "^4.0.12",
-    "astro": "^6.1.6",
-    "preact": "^10.28.2",
+    "@astrojs/preact": "^5.1.1",
+    "@astrojs/rss": "^4.0.18",
+    "astro": "^6.1.8",
     "katex": "^0.16.27",
+    "preact": "^10.28.2",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0"
   }
